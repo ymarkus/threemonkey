@@ -1,0 +1,25 @@
+{
+  "name": "boltwind",
+  "version": "1.0.0",
+  "watch": {
+    "build": {
+      "patterns": [
+        "src",
+        "tailwind.config.js"
+      ],
+      "extensions": "js,css"
+    }
+  },
+  "scripts": {
+    "build": "postcss src/*.css -d css/",
+    "watch": "npm-watch build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.3",
+    "cssnano": "^5.0.8",
+    "npm-watch": "^0.11.0",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.9"
+  }
+}
