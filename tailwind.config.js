@@ -34,6 +34,7 @@ module.exports = {
         'screen-3/5': '60vw',
         'screen-3/4': '75vw',
         'screen-4/5': '80vw',
+        '9/10': '90%',
       },
       zIndex: {
         '-10': '-10'
