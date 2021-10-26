@@ -6,6 +6,13 @@
   background: linear-gradient(to right, #ff00ff, #ffff00);
 }
 
+.backgroundimg {
+  /*background-image: url("{{ asset('img/hero.png') }}");*/ /* set in html */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 /* hamburger menu */
 #nav-toggle {
   width: 2rem;
