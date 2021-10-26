@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.gradient {
+  background: linear-gradient(to right, #ff00ff, #ffff00);
+}
+
+/* hamburger menu */
+#nav-toggle {
+  width: 2rem;
+  height: 1.5rem;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+#nav-toggle span {
+  display: block;
+  position: absolute;
+  height: 0.3rem;
+  width: 100%;
+  border-radius: 1rem;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+#nav-toggle span:nth-child(1) {
+  top: 0;
+}
+#nav-toggle span:nth-child(2),#nav-toggle span:nth-child(3) {
+  top: 0.6rem;
+}
+#nav-toggle span:nth-child(4) {
+  top: 1.2rem;
+}
+#nav-toggle.open span:nth-child(1) {
+  top: 0.6rem;
+  width: 0%;
+  left: 50%;
+}
+#nav-toggle.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+#nav-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+#nav-toggle.open span:nth-child(4) {
+  top: 0.6rem;
+  width: 0%;
+  left: 50%;
+}
