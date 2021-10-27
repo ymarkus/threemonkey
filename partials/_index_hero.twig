@@ -4,13 +4,13 @@
 <!--Hero-->
 <div class="pt-24 backgroundimg" style="background-image: url('{{ record|thumbnail(height=1080) }}');">
 
-  <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center" >
+  <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row" >
     <!--Left Col-->
-    <div class="flex flex-col w-full lg:w-3/5 md:mx-auto justify-center items-center text-center">
-      <h3 class="uppercase tracking-loose w-full">{{ record.introduction }}</h3>
+    <div class="flex flex-col items-center justify-center w-full text-center lg:w-3/5 md:mx-auto">
+      <h3 class="w-full uppercase tracking-loose">{{ record.introduction }}</h3>
       <h1 class="my-4 text-5xl font-bold leading-tight">{{ config.get('general/payoff') }}</h1>
-      <p class="hidden md:block leading-normal text-2xl mb-4">{{ record.content }}</p>
-      <a href="{{ record.link }}" class="mx-auto lg:mx-0 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg transform-gpu transition duration-150 ease-in-out hover:scale-105">
+      <p class="hidden mb-4 text-2xl leading-normal md:block">{{ record.content }}</p>
+      <a href="{{ record.link }}" class="px-8 py-4 mx-auto my-6 font-bold text-gray-800 transition duration-150 ease-in-out bg-white rounded-full shadow-lg lg:mx-0 transform-gpu hover:scale-105">
         {{ __('general.phrase.read-more') }}
       </a>
     </div>

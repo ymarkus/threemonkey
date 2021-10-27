@@ -4,7 +4,7 @@
 {% setcontent records = (contenttype) limit 2 %}
 
 <!-- Introduction -->
-<section class="bg-white border-b py-4 md:py-8">
+<section class="py-4 bg-white border-b md:py-8">
   <div class="container max-w-5xl mx-auto my-4 md:my-8">
     {% include 'partials/_block_header.twig' %}
 
@@ -12,22 +12,22 @@
       <div class="flex flex-wrap pt-4 {% if loop.index is even %}flex-col-reverse sm:flex-row{% endif %}">
 
         {% if loop.index is even %}
-          <div class="w-full sm:w-1/2 px-6 pb-6 sm:p-6">
-            <img class="w-full object-cover object-center" src="{{ record|thumbnail(500, 300, fit="crop") }}" alt="{{ record|image.title }}">
+          <div class="w-full px-6 pb-6 sm:w-1/2 sm:p-6">
+            <img class="object-cover object-center w-full" src="{{ record|thumbnail(500, 300, fit="crop") }}" alt="{{ record|image.title }}">
           </div>
         {% endif %}
 
-        <div class="w-5/6 sm:w-1/2 px-6 pb-6 sm:p-6">
-          <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">{{ record|title }}</h3>
+        <div class="w-5/6 px-6 pb-6 sm:w-1/2 sm:p-6">
+          <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800">{{ record|title }}</h3>
           <p class="text-gray-600">{{ record|excerpt(300) }}</p>
-          <a href="{{ record|link() }}" class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 md:mt-4 underline">
+          <a href="{{ record|link() }}" class="inline-flex items-center text-indigo-500 underline md:mb-2 lg:mb-0 md:mt-4">
             {{ __('general.phrase.read-more') }}
           </a>
         </div>
 
         {% if loop.index is odd %}
-          <div class="w-full sm:w-1/2 px-6 pb-6 sm:p-6">
-            <img class="w-full object-cover object-center" src="{{ record|thumbnail(500, 300, fit="crop") }}" alt="{{ record|image.title }}">
+          <div class="w-full px-6 pb-6 sm:w-1/2 sm:p-6">
+            <img class="object-cover object-center w-full" src="{{ record|thumbnail(500, 300, fit="crop") }}" alt="{{ record|image.title }}">
           </div>
         {% endif %}
 
@@ -35,4 +35,4 @@
     {% endfor %}
 
   </div>
-</section> 
+</section>
