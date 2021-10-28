@@ -1,8 +1,8 @@
 <!--header-->
 <header
     id="header" class="fixed top-0 z-30 w-full text-white"
-                x-data="{ menuOpen: false, atTop: true, scrollReact() { this.atTop = (window.pageYOffset > 10) ? false : true } }"
-                x-init="scrollReact()" @scroll.window="scrollReact()"
+                x-data="{ menuOpen: false, atTop: true, scrollReact() { this.atTop = (window.pageYOffset > 20) ? false : true } }"
+                x-init="scrollReact()" @scroll.window.debounce.100ms="scrollReact()"
                 :class="(menuOpen || !atTop) ? 'text-gray-800 bg-white shadow' : 'text-white'">
 
   <div class="container flex flex-wrap items-center justify-between w-full max-w-screen-xl py-2 mx-auto mt-0">

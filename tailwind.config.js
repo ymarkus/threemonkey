@@ -8,38 +8,18 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundSize: {
-        'full': '100% 100%',
-      },
       minHeight: {
         'screen-1/2': '50vh',
-        'screen-3/5': '60vh',
-        'screen-3/4': '75vh',
         'screen-4/5': '80vh',
-      },
-      maxHeight: {
-        'screen-1/2': '50vh',
-        'screen-3/5': '60vh',
-        'screen-3/4': '75vh',
-        'screen-4/5': '80vh',
+        'screen-9/10': '90vh',
       },
       minWidth: {
-        'screen-1/2': '50vw',
-        'screen-3/5': '60vw',
-        'screen-3/4': '75vw',
-        'screen-4/5': '80vw',
+        '1/3': '33.33333333%',
+        '3/10': '30%',
       },
       maxWidth: {
-        'screen-1/2': '50vw',
-        'screen-3/5': '60vw',
-        'screen-3/4': '75vw',
-        'screen-4/5': '80vw',
         '9/10': '90%',
       },
-      zIndex: {
-        '-10': '-10'
-      },
-      transform: ['hover', 'focus']
     }
   },
   variants: {

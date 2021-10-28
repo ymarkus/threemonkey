@@ -1,0 +1,9 @@
+# location for the embedded map
+location:
+  map_query: "Rudolf Koehler GmbH"
+  address: |
+    Dieselstraße 20
+    51381 Leverkusen
+    Deutschland
+  email: info@koehler-etiketten.com
+  phone: "+49 2171 395650"
