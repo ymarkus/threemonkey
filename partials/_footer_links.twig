@@ -1,0 +1,27 @@
+{% for ct in config.get('contenttypes')|filter(ct => not ct.viewless and not ct.singleton) %}
+
+	{% setcontent records = ct.slug latest limit 3 %}
+
+	<div class="flex-1 text-gray-500">
+		<h4 class="text-gray-500 uppercase md:mb-6">{{ ct.name|trans|raw|upper }}</h4>
+
+		{% if records|length %}
+			<nav class="mb-6">
+				<ul>
+					{% for record in records %}
+						<li>
+							<a href="{{ record|link }}" class="text-gray-600 hover:underline">{{ record|title }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+			<a class="no-underline hover:underline" href="{{ path('listing', {'contentTypeSlug': ct.slug}) }}">
+				{{ __('contenttypes.generic.overview',{'%contenttypes%': ct.name}) }}
+				&raquo;
+			</a>
+		{% else %}
+			<p>{{ __('contenttypes.generic.no-recent', {'%contenttype%': ct.slug}) }}</p>
+		{% endif %}
+	</div>
+
+{% endfor %}

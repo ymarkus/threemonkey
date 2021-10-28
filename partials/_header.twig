@@ -12,9 +12,7 @@
       <a href="{{ path('homepage') }}" class="flex items-center flex-1 text-2xl font-bold no-underline hover:no-underline lg:text-4xl"
                                        :class="(menuOpen || !atTop) ? 'text-gray-800' : 'text-white'">
         {% include 'img/logo.svg' %}
-        {% if record|default and record.title %}
-          <p class="hidden sm:block">{{ config.get('general/sitename') }}</p>
-        {% endif %}
+        <p class="hidden sm:block">{{ config.get('general/sitename') }}</p>
       </a>
     </div>
 
