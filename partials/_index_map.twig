@@ -1,9 +1,7 @@
 {# Configure the address and location of the map in `public/theme/base-2021/theme.yaml`. #}
-
 {% set mapurl = 'https://maps.google.com/maps?q=' ~ (config.get('theme/location/map_query', 'Two Kings, The Hague')|url_encode) %}
 
-<section class="text-gray-700 border-b backgroundimg" style="background-image: url('{{ asset("img/map.jpg") }}');">
-{% include 'partials/_divider_bottom.twig' %}
+<section class="text-gray-700 bg-white border-b">
 
 <!-- Contact with form and map -->
   <div class="container flex flex-wrap px-5 py-12 mx-auto sm:flex-no-wrap">

@@ -1,0 +1,18 @@
+{# The name of the `content` is passed in from the index, i.e. "blocks/people" #}
+{% setcontent block = (content) returnsingle %}
+
+{% include 'partials/_divider_bottom.twig' %}
+
+<!-- Bottom CTA -->
+<section class="container py-6 mx-auto my-6 text-center">
+	<h1 class="w-full mb-2 text-5xl font-bold leading-tight text-center text-white">{{ block|title }}</h1>
+	<div class="w-full mb-4">
+		<div class="w-1/6 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
+	</div>
+	<h3 class="py-6 my-4 text-3xl leading-tight text-white">{{ block|excerpt }}</h3>
+  <a href="{{ record.contentlink|e }}" class="inline-block px-6 py-4 mx-auto font-bold text-gray-800 bg-white rounded-full shadow-lg transform-gpu hover:scale-105 lg:mx-0">
+    {{ record.call|default('Action!') }}
+  </a>
+</section>
+
+{% include 'partials/_divider_top.twig' %}
