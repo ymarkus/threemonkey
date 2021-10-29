@@ -18,7 +18,7 @@
 						<div class="flex-1 overflow-hidden bg-white rounded-t rounded-b-none shadow">
 							<h4 class="w-full py-8 text-3xl font-bold text-center md:p-8">{{ record|title }}</h4>
 							<div class="w-full h-1 py-0 my-0 rounded-t gradient"></div>
-              <img class="object-cover object-center w-full" src="{{ record|thumbnail(750, 300, fit="crop") }}" alt="{{ record|image.title }}">
+              <img class="object-cover object-center w-full" src="{{ record|thumbnail(700, 300, fit="crop") }}" alt="{{ record|image.title }}">
 							<ul class="w-full text-base font-bold text-center">
 								<li class="py-4 border-b">{{ record.feature_1|default('---') }}</li>
 								<li class="py-4 border-b">{{ record.feature_2|default('---') }}</li>
@@ -30,7 +30,7 @@
                 {{ record.price|default('') }}
 							</div>
 							<div class="flex items-center justify-center">
-                <a href="{{ record.link }}" class="px-8 py-4 mx-auto my-6 font-bold text-white transition duration-150 ease-in-out rounded-full shadow-lg lg:mx-0 gradient transform-gpu hover:scale-105">
+                <a href="{{ record|link }}" class="px-6 py-4 mx-auto my-6 font-bold text-white rounded-full shadow-lg lg:mx-0 gradient transform-gpu hover:scale-105">
                   {{ __('general.phrase.read-more') }}
                 </a>
 							</div>
@@ -53,7 +53,7 @@
                 {{ record.price|default('') }}
 							</div>
 							<div class="flex items-center justify-center">
-                <a href="{{ record.link }}" class="px-6 py-3 mx-auto my-6 font-bold text-white transition duration-150 ease-in-out rounded-full shadow-lg lg:mx-0 gradient transform-gpu hover:scale-105">
+                <a href="{{ record|link }}" class="px-6 py-3 mx-auto my-6 font-bold text-white rounded-full shadow-lg opacity-90 lg:mx-0 gradient transform-gpu hover:scale-105">
                   {{ __('general.phrase.read-more') }}
                 </a>
 							</div>
