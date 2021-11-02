@@ -3,16 +3,11 @@
   <button @click="open = !open" class="flex flex-row items-center w-full px-2 py-1 mt-2 font-semibold text-left bg-transparent rounded-lg md:px-4 md:py-2 md:mt-0 lg:ml-4 md:w-auto md:inline hover:text-gray-800 hover:bg-gray-200"
                                 :class="open && 'bg-gray-200 text-gray-800'">
     <span>{{ item.label|default(item.title) }}</span>
-    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 ml-1 transition-transform duration-200 transform">
+    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 ml-1 transform-gpu">
       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
     </svg>
   </button>
-  <ul x-show="open" x-transition:enter="transition"
-      x-transition:enter-start="transform opacity-0 scale-95"
-      x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75"
-      x-transition:leave-start="transform opacity-100 scale-100"
-      x-transition:leave-end="transform opacity-0 scale-95"
-      class="right-0 w-full origin-top-right rounded-md md:absolute md:shadow-lg md:w-48">
+  <ul x-show="open" class="right-0 w-full origin-top-right rounded-md md:absolute md:shadow-lg md:w-48">
     <li class="px-2 py-2 text-gray-800 bg-white rounded-md">
       {% for item in item.submenu %}
         <a href="{{ item.uri }}" class="block px-4 py-2 text-sm font-semibold bg-transparent rounded-lg hover:text-gray-800 focus:text-gray-800 hover:bg-gray-200
@@ -35,7 +30,8 @@
 {% endmacro %}
 
 <nav class="z-20 w-full p-4 mt-2 md:flex md:items-center md:w-auto md:mt-0 md:bg-transparent md:p-0 md:pr-4"
-     :class="[menuOpen || 'hidden', (!menuOpen && atTop) ? 'text-white' : 'text-gray-800']">
+     :class="[menuOpen || 'hidden', (!menuOpen && atTop) ? 'text-white' : 'text-gray-800']"
+     x-cloak>
   <ul class="items-center justify-end flex-1 list-reset md:flex">
     {% for item in menu %}
       {% if not item.submenu %}
@@ -45,4 +41,28 @@
       {% endif %}
     {% endfor %}
   </ul>
+  <!-- Search -->
+  <div class="mt-2 md:mt-0 md:relative lg:ml-4" @click.away="open = false" x-data="{ open: false }">
+    <button @click="open = !open" class="items-center hidden w-full px-2 py-1 font-semibold text-left bg-transparent rounded-lg md:px-4 md:py-2 md:w-auto md:inline lg:hidden hover:text-gray-800 hover:bg-gray-200"
+                                  :class="open && 'bg-gray-200 text-gray-800'">
+      <svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 -mt-1" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <circle cx="10" cy="10" r="7" />
+        <line x1="21" y1="21" x2="15" y2="15" />
+      </svg>
+      <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="inline w-4 h-4 ml-1 transform-gpu">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+    <div class="right-0 w-full origin-top-right rounded-md md:px-2 md:py-2 md:w-auto md:absolute lg:static lg:px-0 lg:py-0 md:shadow-lg lg:shadow-none lg:block"
+          :class="[open || 'md:hidden', (!menuOpen && atTop) ? 'bg-transparent text-white' : 'bg-white text-gray-800']"
+          x-cloak>
+      <form class="flex w-auto" method="get" action="{{ path('search') }}" enctype="text/plain">
+        <input class="flex-1 px-3 py-1 text-base text-center transition-all bg-transparent border-2 rounded-l-lg lg:w-28 lg:focus:w-48 focus:outline-none" :class="open && 'bg-white text-gray-800'" value="{{ search|default|escape }}" placeholder="{{ __('general.phrase.search-ellipsis') }}" type="search" name="search">
+        <button class="flex-initial px-3 font-bold text-black bg-gray-200 rounded-r-lg">
+          {{ __('action.search') }}
+        </button>
+      </form>
+    </div>
+  </div>
 </nav>

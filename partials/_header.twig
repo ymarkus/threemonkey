@@ -5,7 +5,7 @@
                 x-init="scrollReact()" @scroll.window.debounce.100ms="scrollReact()"
                 :class="(menuOpen || !atTop) ? 'text-gray-800 bg-white shadow' : 'text-white'">
 
-  <div class="container flex flex-wrap items-center justify-between w-full max-w-screen-xl py-2 mx-auto mt-0">
+  <div class="container flex flex-wrap items-center justify-between w-full max-w-screen-xl py-2 mx-auto mt-0 md:flex-nowrap">
 
     <!-- Left side -->
     <div class="flex items-center pl-4">

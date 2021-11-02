@@ -14,6 +14,9 @@
   transition: all .25s ease
 }
 
+/* for alpinejs */
+[x-cloak] { display: none !important; }
+
 /* hamburger menu */
 #nav-toggle {
   width: 2rem;
