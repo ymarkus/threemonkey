@@ -4,6 +4,6 @@
 </div>
 <div class="w-full mb-4">
   <p class="mx-auto leading-relaxed text-gray-700 max-w-9/10 lg:w-2/3 text-md">
-    {{ block|excerpt(200) }}
+    {{ block.teaser|default(block|excerpt(200)) }}
   </p>
 </div>
