@@ -6,21 +6,21 @@
 
 			<div class="flex-1 mb-6 text-black">
 
-				<div class="flex justify-center">
+				<div class="flex items-center justify-center h-full">
 					<a href="{{ path('homepage') }}" class="mb-4 text-2xl font-bold transform-gpu hover:scale-105 lg:text-4xl">
 						{% include 'img/logo.svg' %}
 						{#<p>{{ config.get('general/sitename') }}</p>#}
 					</a>
 				</div>
 
-				<div class="mr-4">
+{#				<div class="mr-4">
 					<form class="flex" method="get" action="{{ path('search') }}" enctype="text/plain">
 						<input class="flex-1 w-10 px-4 py-2 text-base bg-gray-200 border-2 border-gray-400 rounded-lg focus:outline-none focus:border-indigo-500" value="{{ search|default|escape }}" placeholder="{{ __('general.phrase.search-ellipsis') }}" type="search" name="search">
 						<button class="flex-none px-3 py-1 font-bold text-white rounded-lg shadow-lg opacity-75 lg:mx-0 gradient transform-gpu hover:scale-105">
 							{{ __('action.search') }}
 						</button>
 					</form>
-				</div>
+				</div>#}
 			</div>
 
 			{% include 'partials/_footer_links.twig' %}

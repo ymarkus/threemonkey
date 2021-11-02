@@ -2,7 +2,7 @@
 
 	{% setcontent records = ct.slug latest limit 3 %}
 
-	<div class="flex-1 text-gray-500">
+	<div class="flex-1 pb-6 text-gray-500">
 		<h4 class="text-gray-500 uppercase md:mb-6">{{ ct.name|trans|raw|upper }}</h4>
 
 		{% if records|length %}

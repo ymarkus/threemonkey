@@ -2,9 +2,9 @@
 {% setcontent block = (content) returnsingle %}
 
 <!--Hero-->
-<div class="pt-36 md:pt-24 backgroundimg" style="background-image: url('{{ record|thumbnail(height=1080) }}');">
+<div class="pt-36 backgroundimg" style="background-image: url('{{ record|thumbnail(height=1080) }}');">
 
-  <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:flex-row" >
+  <div class="container flex flex-col flex-wrap items-center px-3 mx-auto md:pb-12 md:flex-row" >
     <!--Left Col-->
     <div class="flex flex-col items-center justify-center w-full pb-20 text-center lg:w-3/5 md:mx-auto md:pb-0">
       <h3 class="w-full uppercase tracking-loose">{{ record.introduction }}</h3>

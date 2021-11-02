@@ -1,0 +1,101 @@
+{% extends 'partials/_master.twig' %}
+
+{% block main %}
+	<article class="article">
+		{# This template is used for 'listings': Generic pages that list a number of
+			           records from a certain content type. These records are available as an array
+			           called 'records'. In the for-loop below, we iterate over the records that
+			           are on this page. It can be used for overview pages like 'all entries', or
+			           'all records tagged with kittens'. #}
+
+
+		<section class="w-full bg-gray-100 mt-14 text-gray">
+			{# If used for listing a taxonomy, we add a heading #}
+			{% if taxonomy is defined %}
+				<div class="container px-5 pt-12 mx-auto text-lg font-bold text-center text-gray-800">
+					<h1>
+						{{ __('general.phrase.overview-for', {'%slug%': taxonomy.options[slug]|default(slug) }) }}
+					</h1>
+				</div>
+			{% endif %}
+
+			{# If used for searching, we add a heading #}
+			{% if search is defined %}
+				<div class="container px-5 pt-12 mx-auto text-lg font-bold text-center text-gray-800">
+					<h1>
+						{% if search is not empty %}
+							{{ __('general.phrase.search-results-for-variable', { '%search%': search }) }}
+						{% else %}
+							{{ __('general.phrase.search') }}
+						{% endif %}
+					</h1>
+				</div>
+			{% endif %}
+
+			<div class="container max-w-5xl px-5 py-6 mx-auto">
+				{% for record in records %}
+					<div class="flex flex-wrap py-4 {% if loop.index is even %}flex-col-reverse sm:flex-row{% endif %}">
+
+						{% if loop.index is even %}
+							<div class="w-full px-6 pb-6 sm:w-1/2 sm:p-6">
+								<img class="object-cover object-center w-full" src="{{ record|thumbnail(500, 300, fit="crop") }}" alt="{{ record|image.title }}">
+							</div>
+						{% endif %}
+
+						<div class="flex flex-col w-5/6 px-6 pb-6 sm:w-1/2 sm:p-6">
+							<span class="font-medium tracking-widest text-gray-800 title-font">
+								{% for type, taxonomies in record|taxonomies %}
+									{% if taxonomies|length > 0 %}
+										{% for taxonomy in taxonomies %}
+											<a class="hover:underline" href="{{ taxonomy|link }}">{{ taxonomy.name }}</a>
+											{%- if not loop.last %} | {% endif %}
+										{% endfor %}
+										{%- if not loop.last %} <br> {% endif %}
+									{% endif %}
+								{% endfor %}
+							</span>
+							<span class="mt-1 text-sm text-gray-500">
+								{{ record.publishedAt|localdate }}
+							</span>
+							<a class="hover:underline" href="{{ record|link }}">
+								<h3 class="my-3 text-3xl font-bold leading-none text-gray-800 hover:underline">{{ record|title }}</h3>
+							</a>
+							<p class="text-gray-600">{{ record|excerpt(300, false, search|default('')) }}</p>
+							<a href="{{ record|link() }}" class="inline-flex items-center text-lg text-indigo-500 hover:underline md:mb-2 lg:mb-0 md:mt-4">
+								{{ __('general.phrase.read-more') }} »
+							</a>
+						</div>
+
+						{% if loop.index is odd %}
+							<div class="w-full px-6 pb-6 sm:w-1/2 sm:p-6">
+								<img class="object-cover object-center w-full" src="{{ record|thumbnail(500, 300, fit="crop") }}" alt="{{ record|image.title }}">
+							</div>
+						{% endif %}
+
+					</div>
+
+				{% else %}
+					<h2 class="mb-2 text-2xl font-medium text-black title-font">{{ __('general.phrase.no-content-found') }}</h2>
+					<p class="leading-relaxed text-black">
+						{{ __("Unfortunately, no content could be found. Try another page, or go to the <a href=\"%paths_root%\">homepage</a>.", {'%paths_root%': path('homepage')} ) }}
+					</p>
+					<form class="flex py-12 text-black 1-full md:w-1/2" method="get" action="{{ path('search') }}" enctype="text/plain">
+						<input class="flex-1 w-10 px-4 py-2 text-base bg-gray-200 border-2 border-gray-400 rounded-lg focus:outline-none focus:border-indigo-500" value="{{ search|default|escape }}" placeholder="{{ __('general.phrase.search-ellipsis') }}" type="search" name="search">
+						<button class="flex-none px-3 py-1 font-bold text-white rounded-lg shadow-lg lg:mx-0 gradient transform-gpu hover:scale-105">
+							{{ __('action.search') }}
+						</button>
+					</form>
+
+				{% endfor %}
+
+			</div>
+
+			<div class="block pb-6 sm:hidden">
+				{{ pager(records, template='helpers/_pagination.twig', surround=1) }}
+			</div>
+			<div class="hidden pb-6 sm:block">
+				{{ pager(records, template='helpers/_pagination.twig') }}
+			</div>
+		</section>
+	</article>
+{% endblock main %}
