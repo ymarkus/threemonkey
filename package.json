@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build": "postcss src/*.css -d css/",
-    "watch": "npm-watch build"
+    "watch": "npm-watch build",
+    "buildprod": "NODE_ENV=production npm run build"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.3",

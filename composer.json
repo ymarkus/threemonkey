@@ -1,0 +1,25 @@
+{
+  "name": "ymarkus/threemonkey",
+  "description": "A bolt theme built with tailwind css",
+  "type": "bolt-theme",
+  "keywords": [
+    "CMS",
+    "Twig"
+  ],
+  "require": {
+    "bolt/core": "^5.0",
+    "twig/twig": "^3.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Yannick Markus",
+      "email": "ym@ymarkus.dev"
+    }
+  ],
+  "extra": {
+    "themes": [
+      "threemonkey"
+    ]
+  }
+}
