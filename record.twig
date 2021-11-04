@@ -29,9 +29,18 @@
 					{% endfor %}
 				</div>
 
-				{% with { 'record': record, 'exclude': [ record|image.fieldname|default(), 'teaser' ] } %}
-				{{ block('sub_fields', 'helpers/_fields.twig') }}
-				{% endwith %}
+        <!-- Record Content-->
+
+        <article class="article">
+          <h1>{{ record|title }}</h1>
+
+          {% with { 'record': record, 'exclude': [record|image.fieldname|default(), 'teaser'] } %}
+          {{ block('sub_fields', 'helpers/_fields.twig') }}
+          {% endwith %}
+        </article>
+
+        <!--/ Record Content-->
+      
 			</div>
 
 		</div>
