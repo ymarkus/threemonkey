@@ -5,8 +5,8 @@
 
 <!-- Introduction -->
 <section class="py-4 bg-white border-b md:py-8">
+  {% include 'partials/_block_header.twig' %}
   <div class="container max-w-5xl mx-auto my-4 md:my-8">
-    {% include 'partials/_block_header.twig' %}
 
     {% for record in records %}
       <div class="flex flex-wrap pt-4 {% if loop.index is even %}flex-col-reverse sm:flex-row{% endif %}">
