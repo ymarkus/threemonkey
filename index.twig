@@ -4,15 +4,15 @@
 
   {% include 'partials/_index_hero.twig' with { content: 'homepage/1' } %}
 
-  {% include 'partials/_index_introduction.twig' with { content: 'homepage/1', contenttype: 'pages' } %}
+  {% include 'partials/_index_introduction.twig' with { content: 'blocks/introduction', contenttype: 'pages' } %}
 
-  {% include 'partials/_index_pricing.twig' with { content: 'block/products', contenttype: 'products' } %}
+  {% include 'partials/_index_pricing.twig' with { content: 'blocks/products', contenttype: 'products' } %}
 
-  {% include 'partials/_index_people.twig' with { content: 'block/people', contenttype: 'people' } %}
+  {% include 'partials/_index_people.twig' with { content: 'blocks/people', contenttype: 'people' } %}
 
   {% include 'partials/_index_3block.twig' with { contenttype: 'entries' } %}
 
-  {% include 'partials/_index_CTA.twig' with { content: 'block/call-to-action' } %}
+  {% include 'partials/_index_CTA.twig' with { content: 'blocks/call-to-action' } %}
 
   {% include 'partials/_index_map.twig' %}
 
