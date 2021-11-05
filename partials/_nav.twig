@@ -1,4 +1,5 @@
 {% macro display_submenu(item) %}
+{% apply spaceless %}
 <li class="md:relative" @click.away="open = false" x-data="{ open: false }">
   <button @click="open = !open" class="flex flex-row items-center w-full px-2 py-1 mt-2 font-semibold text-left bg-transparent rounded-lg md:px-4 md:py-2 md:mt-0 lg:ml-4 md:w-auto md:inline hover:text-gray-800 hover:bg-gray-200"
                                 :class="open && 'bg-gray-200 text-gray-800'">
@@ -9,16 +10,32 @@
   </button>
   <ul x-show="open" class="right-0 w-full origin-top-right rounded-md md:absolute md:shadow-lg md:w-48">
     <li class="px-2 py-2 text-gray-800 bg-white rounded-md">
-      {% for item in item.submenu %}
-        <a href="{{ item.uri }}" class="block px-4 py-2 text-sm font-semibold bg-transparent rounded-lg hover:text-gray-800 focus:text-gray-800 hover:bg-gray-200
-                                         focus:bg-gray-200 {% if item|current %}bg-gray-200 text-gray-800 font-bold{% endif %}">
-          {{ item.label|default(item.title) }}
-        </a>
-      {% endfor %}
+      {% if item.submenu %}
+        {% for item in item.submenu %}
+          <a href="{{ item.link }}" class="block px-4 py-2 text-sm font-semibold bg-transparent rounded-lg hover:text-gray-800 focus:text-gray-800 hover:bg-gray-200 focus:bg-gray-200 {% if item|current %}bg-gray-200 text-gray-800 font-bold{% endif %}">
+            {{ item.label|default(item.title) }}
+          </a>
+        {% endfor %}
+      {% elseif item.list|default(false) %}
+        {% set list = [] %}
+        {% setcontent listedcontent = item.list.contenttype where item.list.where %}
+        {% for listitem in listedcontent %}
+          {% set list = list|merge([{title: listitem|title, link: listitem|link, label: listitem|title}]) %}
+        {% endfor %}
+        {% if list is not empty %}
+          {% for item in list %}
+            <a href="{{ item.link }}" class="block px-4 py-2 text-sm font-semibold bg-transparent rounded-lg hover:text-gray-800 focus:text-gray-800 hover:bg-gray-200 focus:bg-gray-200 {% if item|current %}bg-gray-200 text-gray-800 font-bold{% endif %}">
+              {{ item.label|default(item.title) }}
+            </a>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
     </li>
   </ul>
 </li>
+{% endapply %}
 {% endmacro %}
+
 
 {% macro display_main(item) %}
 <li>
@@ -29,18 +46,20 @@
 </li>
 {% endmacro %}
 
+
 <nav class="z-20 w-full p-4 mt-2 md:flex md:items-center md:w-auto md:mt-0 md:bg-transparent md:p-0 md:pr-4"
      :class="[menuOpen || 'hidden', (!menuOpen && atTop) ? 'text-white' : 'text-gray-800']"
      x-cloak>
   <ul class="items-center justify-end flex-1 list-reset md:flex">
     {% for item in menu %}
-      {% if not item.submenu %}
+      {% if not ( item.submenu or item.list|default(false) ) %}
         {{ _self.display_main(item) }}
       {% else %}
         {{ _self.display_submenu(item) }}
       {% endif %}
     {% endfor %}
   </ul>
+
   <!-- Search -->
   <div class="mt-2 md:mt-0 md:relative lg:ml-4" @click.away="open = false" x-data="{ open: false }">
     <button @click="open = !open" class="items-center hidden w-full px-2 py-1 font-semibold text-left bg-transparent rounded-lg md:px-4 md:py-2 md:w-auto md:inline lg:hidden hover:text-gray-800 hover:bg-gray-200"
