@@ -1,7 +1,7 @@
 {# The name of the `content` is passed in from the index, i.e. "blocks/introduction" #}
 {% setcontent block = (content) returnsingle %}
 {# The name of `contenttype` is passed in from the index, i.e. "pages" #}
-{% setcontent records = (contenttype) limit 3 %}
+{% setcontent records = (contenttype) where { groups: 'main' } limit 3 %}
 
 <section class="py-8 bg-gray-200">
 

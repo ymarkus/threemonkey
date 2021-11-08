@@ -1,7 +1,6 @@
 module.exports = {
   purge: {
     mode: 'all',
-    enabled: true,
     preserveHtmlElements: false,
     options: {
       keyframes: true,

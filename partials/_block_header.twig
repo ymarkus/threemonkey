@@ -5,5 +5,11 @@
 <div class="w-full mb-4">
   <p class="text-center mx-auto leading-relaxed text-gray-700 max-w-9/10 lg:w-2/3 text-md">
     {{ block.teaser|default(block|excerpt(200)) }}
+    {% if contenttype is defined %}
+      <a class="underline" href="{{ path('listing', {'contentTypeSlug': contenttype}) }}">
+        {{ __('contenttypes.generic.overview',{'%contenttypes%': contenttype}) }}
+        &raquo;
+      </a>
+    {% endif %}
   </p>
 </div>
