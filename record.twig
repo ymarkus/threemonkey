@@ -31,11 +31,9 @@
 
         <!-- Record Content-->
 
-        <article class="article">
-          {# <h1>{{ record|title }}</h1> #}
-
+        <article class="article text-xl space-y-4">
           {% with { 'record': record, 'exclude': [record|image.fieldname|default(), 'title', 'teaser', 'name'] } %}
-          {{ block('sub_fields', 'helpers/_fields.twig') }}
+            {{ block('sub_fields', 'helpers/_fields.twig') }}
           {% endwith %}
         </article>
 
