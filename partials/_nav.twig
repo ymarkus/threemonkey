@@ -84,4 +84,11 @@
       </form>
     </div>
   </div>
+
+  <!-- language selector -->
+  <div class="mt-2 md:mt-0 md:relative lg:ml-4" @click.away="open = false" x-data="{ open: false }">
+    <div class="items-center justify-end flex-1 list-reset md:flex">
+      {% include 'helpers/_languageselect.html.twig' with {'type': 'select', 'class': 'bg-transparent font-semibold'} %}
+    </div>
+  </div>
 </nav>
